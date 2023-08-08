@@ -12,18 +12,23 @@ let pokemonRepository = (function () {
   function add (pokemon) {
     pokemonList.push(pokemon);
   }
+  function addListItem(pokemon){
+    let pokemonList = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('button-class');
+    listItem.appendChild(button);
+    pokemonList.appendChild(listItem);
 
+  }
   return {
     getAll: getAll,
-    add: add
+    add: add,
+    addListItem: addListItem
   };
 })()
-// a forEach with a conditional to display all of the pokemon names and height commenting on the tallest one.
+// a forEach.
   pokemonRepository.getAll().forEach(function(pokemon){
-    if (pokemon.height >=6){  
-      document.write(pokemon.name + ' (height = ', pokemon.height + ') - Wow, that\'s big!' + '<br>')
-    }
-    else if (pokemon.height <6){
-      document.write(pokemon.name + ' (height = ', pokemon.height + ')' + '<br>')
-    }
+    pokemonRepository.addListItem(pokemon);
   })
