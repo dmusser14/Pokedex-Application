@@ -23,11 +23,18 @@ let pokemonRepository = (function () {
     });
   }
   
-  // Modal showing Pokemon Info
+  // Adding Loading Message for user
+  function showLoadingMessage(){
+    console.log('Loading');
+  }
 
+  // Hiding Loading Message
+  function hideLoadingMessage() {};
+
+  // Modal showing Pokemon Info
   function showDetails(pokemon) {
-    loadDetails(pokemon);
-    
+    loadDetails(pokemon).then(function (){
+
     // Clear all existing modal content
     modalContainer.innerHTML = '';
 
@@ -50,16 +57,15 @@ let pokemonRepository = (function () {
     let contentElement = document.createElement('p');
     contentElement.innerText = 'Height: ' + pokemon.height;
 
-    let typesElement = document.createElement('p');
-    typesElement.innerText = 'Types: ' + pokemon.types;
+    //let typesElement = document.createElement('p');
+    //typesElement.innerText = 'Types: ' + pokemon.types;
 
     modal.appendChild(closeButtonElement);
     modal.appendChild(imageElement);
     modal.appendChild(titleElement);
     modal.appendChild(contentElement);
-    modal.appendChild(typesElement);
+    //modal.appendChild(typesElement);
     modalContainer.appendChild(modal);
-
 
     modalContainer.classList.add('is-visible');
 
@@ -81,14 +87,11 @@ let pokemonRepository = (function () {
         hideModal();
       }
     });
-  
-  
-  //document.querySelector('#show-details').addEventListener('click', () => {
-    //showDetails();
-  //});
-}
+  });
+}  
 
   function loadList() {
+    showLoadingMessage();
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
@@ -98,13 +101,16 @@ let pokemonRepository = (function () {
           detailsUrl: item.url
         };
         add(pokemon);
-      }); 
+      });
+      hideLoadingMessage(); 
     }).catch(function (e) {
+      hideLoadingMessage();
       console.error(e);
     })
   }
 
   function loadDetails(item) {
+    showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
@@ -112,7 +118,9 @@ let pokemonRepository = (function () {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
+      hideLoadingMessage();
     }).catch(function (e) {
+      hideLoadingMessage();
       console.error(e);
     });
   }
@@ -131,3 +139,8 @@ pokemonRepository.loadList().then(function() {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
+//Old Code
+  //document.querySelector('#show-details').addEventListener('click', () => {
+    //showDetails();
+  //});
