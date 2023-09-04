@@ -14,7 +14,7 @@ let pokemonRepository = (function () {
     let listItem = document.createElement('li');
     let button = document.createElement('button');
     button.innerText = pokemon.name;
-    button.classList.add('button-class');
+    button.classList.add('btn', 'btn-primary', 'btn-lg');
     listItem.appendChild(button);
     pokemonList.appendChild(listItem);
     // adding an event listener for button
@@ -57,14 +57,10 @@ let pokemonRepository = (function () {
     let contentElement = document.createElement('p');
     contentElement.innerText = 'Height: ' + pokemon.height;
 
-    //let typesElement = document.createElement('p');
-    //typesElement.innerText = 'Types: ' + pokemon.types;
-
     modal.appendChild(closeButtonElement);
     modal.appendChild(imageElement);
     modal.appendChild(titleElement);
     modal.appendChild(contentElement);
-    //modal.appendChild(typesElement);
     modalContainer.appendChild(modal);
 
     modalContainer.classList.add('is-visible');
@@ -139,8 +135,3 @@ pokemonRepository.loadList().then(function() {
     pokemonRepository.addListItem(pokemon);
   });
 });
-
-//Old Code
-  //document.querySelector('#show-details').addEventListener('click', () => {
-    //showDetails();
-  //});
