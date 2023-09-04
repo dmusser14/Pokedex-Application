@@ -12,11 +12,16 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
   </head>
   <body>
-    <div>
-      <h1>Pokédex App</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <a class="navbar-brand" href="#">
+        <img src="./img/pokemon-favicon.png" width="30" height="30" class="d-inline-block align-top" alt="Picture of a Pokemon ball">Pokédex App
+      </a>
+      
+    </nav>
+    <div class="container page-container">
+      <!--Added Bootstrap list-group-->
+      <ul class="pokemon-list list-group"></ul>
     </div>
-    <!--Added Bootstrap list-group-->
-    <ul class="pokemon-list list-group"></ul>
 
     <!-- Modal -->
     <div class="modal fade" id="model-container" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
