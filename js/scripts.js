@@ -1,7 +1,7 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'
-  let modalContainer = document.querySelector('#modal-container');
+  //let modalContainer = document.querySelector('#modal-container');
 
   function getAll() {
     return pokemonList;
@@ -9,6 +9,7 @@ let pokemonRepository = (function () {
   function add (pokemon) {
     pokemonList.push(pokemon);
   }
+  
   function addListItem(pokemon){
     let pokemonList = document.querySelector('.pokemon-list');
     let listItem = document.createElement('li');
@@ -18,8 +19,8 @@ let pokemonRepository = (function () {
     button.innerText = pokemon.name;
     // added Bootstrap button utility classes
     button.classList.add('btn', 'btn-primary', 'btn-lg');
-    button.setAttribute('data-target', '#modal-container');
     button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#modal-container');
     listItem.appendChild(button);
     pokemonList.appendChild(listItem);
     // adding an event listener for button
@@ -40,7 +41,7 @@ let pokemonRepository = (function () {
   function showModal(pokemon) {
     let modalBody = $('.modal-body');
     let modalTitle = $('.modal-title');
-    let modalHeader = S('.modal-header');
+    let modalHeader = $('.modal-header');
 
     // clear existing content of the modal
     modalTitle.empty();
@@ -59,6 +60,12 @@ let pokemonRepository = (function () {
     modalBody.append(heightElement);
   }
 
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function(pokemon) { 
+
+    })
+  }
+
   function loadList() {
     showLoadingMessage();
     return fetch(apiUrl).then(function (response) {
@@ -75,12 +82,6 @@ let pokemonRepository = (function () {
     }).catch(function (e) {
       hideLoadingMessage();
       console.error(e);
-    })
-  }
-
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then(function(pokemon) {
-      
     })
   }
 
