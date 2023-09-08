@@ -34,7 +34,7 @@ body {
     border: 2px solid red;
   }
 
-  /* Styling for Modal Below */
+  /* Styling for Modal Below 
 
    #modal-container {
     display: none;
@@ -50,13 +50,13 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     
-    /* to show it above other content */
+    /* to show it above other content 
     z-index: 999; 
     
-    /* to allow scrolling if the screen is not high enough */
+    /* to allow scrolling if the screen is not high enough 
     overflow: auto; 
     
-    /* this is used to center the modal */
+    /* this is used to center the modal 
     display: grid;
     text-align: center;
   } 
@@ -93,8 +93,8 @@ body {
     max-width: 150px;
     max-height: 150px;
     width: 100%;
-  } */
-
+  }
+*/
   .page-container {
     margin-top: 60px;   
-    }
+  }
