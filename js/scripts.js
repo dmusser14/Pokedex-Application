@@ -1,7 +1,7 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'
-  let modalContainer = document.querySelector('#modal-container');
+  //let modalContainer = document.querySelector('#modal-container');
 
   function getAll() {
     return pokemonList;
@@ -41,7 +41,7 @@ let pokemonRepository = (function () {
   function showModal(pokemon) {
     let modalBody = $('.modal-body');
     let modalTitle = $('.modal-title');
-    let modalHeader = $('.modal-header');
+    //let modalHeader = $('.modal-header');
 
     // clear existing content of the modal
     modalTitle.empty();
@@ -54,10 +54,13 @@ let pokemonRepository = (function () {
       imageElement.attr('src', pokemon.imageUrl);
     // creating element for height in modal content
     let heightElement = $('<p>' + 'height : ' + pokemon.height + '</p>');
+    // creating element for weight in modal content
+    let weightElement = $('<p>' + 'weight : ' + pokemon.weight + '</p>');
     
     modalTitle.append(nameElement);
     modalBody.append(imageElement);
     modalBody.append(heightElement);
+    modalBody.append(weightElement);
   }
 
   function showDetails(pokemon) {
@@ -93,6 +96,7 @@ let pokemonRepository = (function () {
     }).then(function (details) {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
+      item.weight = details.weight;
       item.types = details.types;
       hideLoadingMessage();
     }).catch(function (e) {
